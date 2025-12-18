@@ -102,22 +102,22 @@ std::vector<std::string> ConverterJSON::GetRequests() {
 
 void ConverterJSON::putAnswers(const std::vector<std::vector<RelativeIndex>>& answers) {
     json answersJSON;
-    json answersMap = json::object();
+    json answersArray = json::array();
 
     for (size_t i = 0; i < answers.size(); i++) {
-        std::string requestId = "request" + std::to_string(i + 1);
-
-        char buffer[10];
+        char buffer[15];
         snprintf(buffer, sizeof(buffer), "request%03zu", i + 1);
-        requestId = buffer;
+        std::string requestId = buffer;
 
-        json requestAnswer;
+        json requestEntry;
+        requestEntry["request"] = requestId;
+
         const auto& relevanceList = answers[i];
 
         if (relevanceList.empty()) {
-            requestAnswer["result"] = "false";
+            requestEntry["result"] = "false";
         } else {
-            requestAnswer["result"] = "true";
+            requestEntry["result"] = "true";
 
             json relevanceArray = json::array();
             for (const auto& rel : relevanceList) {
@@ -126,13 +126,13 @@ void ConverterJSON::putAnswers(const std::vector<std::vector<RelativeIndex>>& an
                 docInfo["rank"] = std::round(rel.rank * 1000.0f) / 1000.0f;
                 relevanceArray.push_back(docInfo);
             }
-            requestAnswer["relevance"] = relevanceArray;
+            requestEntry["relevance"] = relevanceArray;
         }
 
-        answersMap[requestId] = requestAnswer;
+        answersArray.push_back(requestEntry);
     }
 
-    answersJSON["answers"] = answersMap;
+    answersJSON["answers"] = answersArray;
     
     std::ofstream file("answers.json");
     if (file.is_open()) {
