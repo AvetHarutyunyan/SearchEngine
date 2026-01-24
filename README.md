@@ -1,5 +1,5 @@
 # C++ Search Engine
-## 📜 Project Overview
+## Project Overview
 
 This project implements a simplified **Search Server** core written in C++. The application is designed to simulate the core functionality of a search engine, focusing on efficient data indexing and query processing.
 
