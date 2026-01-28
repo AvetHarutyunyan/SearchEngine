@@ -14,5 +14,4 @@ The key features include:
 2. Make sure you have those extensions intalled:
     **C/C++ Extension Pack**,
     **CMake Tools**
-3. You can modify and change the path to config folder in converter.h (optional) 
-4. Click build and run
+3. Click build and run
