@@ -12,7 +12,7 @@ The key features include:
 
 1. To run the program, intall the project then open with VS Code.
 2. Make sure you have those extensions intalled:
-    1) **C/C++ Extension Pack**
-    2) **CMake Tools**
+    1. **C/C++ Extension Pack**
+    2. **CMake Tools**
 3. You can modify and change the path to config folder in converter.h (optional) 
 4. Click build and run
